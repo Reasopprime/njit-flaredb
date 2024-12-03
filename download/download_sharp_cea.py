@@ -38,7 +38,7 @@ def download_sharp(flare_start_time, harp_number, jsoc_email, save_dir):
 return file_sharp
 
 def download_cea(flare_start_time, harp_number, jsoc_email, save_dir):
-    '''Return the save directory of the file that stores 32 hours of sharp data
+    '''Return the save directory of the file that stores 32 hours of sharp_cea data
        Format of the input flare_start_time: 'YYYY-MM-DD HH:MM'
        Download time range start from 24 hours before and 8 hours after the flare start time
     '''
