@@ -9,14 +9,23 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from datetime import datetime, timedelta
 
+def get_flare_start_time_harpnum(flare_list_file, flare_index):
+    '''Return the flare start and end time of an event in the significant flare list
+       Flare index start for 1 to 103
+    '''
+    flare_event_list = pd.read_csv(flare_list_file, header=None)
+    start_time = flare_event_list.iloc[flare_index -1, 2][:16]
+    flare_start_time = datetime.strptime(f'{start_time}', '%Y-%m-%d %H:%M')
+    harpnum = str(flare_event_list.iloc[flare_index -1, 5]).strip()
+    return flare_start_time, harpnum
+
 def download_sharp(flare_start_time, harp_number, jsoc_email, save_dir):
     '''Return the save directory that stores 32 hours of sharp data
        Format of the input flare_start_time: 'YYYY-MM-DD HH:MM'
        Download time range start from 24 hours before and 8 hours after the flare start time
     '''
     if os.path.exists(save_dir):
-        event_start_time = datetime.strptime(f'{flare_start_time}', '%Y-%m-%d %H:%M')
-        start_time = event_start_time - timedelta(minutes=event_start_time.minute % 12) - timedelta(days=1)
+        start_time = flare_start_time - timedelta(minutes=flare_start_time.minute % 12) - timedelta(days=1)
         end_time = start_time + timedelta(hours=32)
         save_time = datetime.strftime(flare_start_time,'%Y-%m-%dT%H%M')
 
@@ -43,8 +52,7 @@ def download_cea(flare_start_time, harp_number, jsoc_email, save_dir):
        Download time range start from 24 hours before and 8 hours after the flare start time
     '''
     if os.path.exists(save_dir):
-        event_start_time = datetime.strptime(f'{flare_start_time}', '%Y-%m-%d %H:%M')
-        start_time = event_start_time - timedelta(minutes=event_start_time.minute % 12) - timedelta(days=1)
+        start_time = flare_start_time - timedelta(minutes=flare_start_time.minute % 12) - timedelta(days=1)
         end_time = start_time + timedelta(hours=32)
         save_time = datetime.strftime(flare_start_time,'%Y-%m-%dT%H%M')
 
