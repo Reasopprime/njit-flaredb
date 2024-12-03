@@ -40,7 +40,7 @@ def download_sharp(flare_start_time, harp_number, jsoc_email, save_dir):
                                    #a.jsoc.Segment('disambig') &         # disambig solved since 15 Jan 2014
                                    a.jsoc.Segment('magnetogram') &
                                    a.jsoc.Segment('continuum'))
-        sharp_save_dir = os.path.join(save_dir, 'sharp', f'{save_time}')
+        sharp_save_dir = os.path.join(save_dir, f'{save_time}', 'sharp')
         os.makedirs(sharp_save_dir, exist_ok=True)
         file_sharp = Fido.fetch(result_sharp, path=sharp_save_dir, max_conn=10)
         
@@ -66,7 +66,7 @@ def download_cea(flare_start_time, harp_number, jsoc_email, save_dir):
                                  a.jsoc.Segment('Bp') &
                                  a.jsoc.Segment('magnetogram') &
                                  a.jsoc.Segment('continuum'))
-        cea_save_dir = os.path.join(save_dir, 'sharp_cea', f'{save_time}')
+        cea_save_dir = os.path.join(save_dir, f'{save_time}', 'sharp_cea')
         os.makedirs(cea_save_dir, exist_ok=True)
         file_cea = Fido.fetch(result_cea, path=cea_save_dir, max_conn=10)
 
