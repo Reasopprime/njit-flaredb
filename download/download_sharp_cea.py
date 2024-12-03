@@ -34,6 +34,19 @@ def download_sharp(flare_start_time, harp_number, jsoc_email, save_dir):
         sharp_save_dir = os.path.join(save_dir, 'sharp', f'{save_time}')
         os.makedirs(sharp_save_dir, exist_ok=True)
         file_sharp = Fido.fetch(result_sharp, path=sharp_save_dir, max_conn=10)
+        
+return file_sharp
+
+def download_cea(flare_start_time, harp_number, jsoc_email, save_dir):
+    '''Return the save directory of the file that stores 32 hours of sharp data
+       Format of the input flare_start_time: 'YYYY-MM-DD HH:MM'
+       Download time range start from 24 hours before and 8 hours after the flare start time
+    '''
+    if os.path.exists(save_dir):
+        event_start_time = datetime.strptime(f'{flare_start_time}', '%Y-%m-%d %H:%M')
+        start_time = event_start_time - timedelta(minutes=event_start_time.minute % 12) - timedelta(days=1)
+        end_time = start_time + timedelta(hours=32)
+        save_time = datetime.strftime(flare_start_time,'%Y-%m-%dT%H%M')
 
         result_cea = Fido.search(a.Time(start_time, end_time),
                                  a.Sample(12*u.minute),
@@ -49,4 +62,4 @@ def download_sharp(flare_start_time, harp_number, jsoc_email, save_dir):
         os.makedirs(cea_save_dir, exist_ok=True)
         file_cea = Fido.fetch(result_cea, path=cea_save_dir, max_conn=10)
 
-    return file_sharp, file_cea
+return file_cea
