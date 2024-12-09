@@ -62,7 +62,8 @@ def find_closest_aia(target_time, aia_dir, t_cri):
         return False
 
 def get_hpc_aia_12m(hmi_dir, aia_raw_dir, aia_save_dir, harpnumber):
-  
+    ''' hmi_dir: directory of the HMI HPC files 
+    '''
     hmi_files = glob.glob(os.path.join(hmi_dir,'*.magnetogram.fits'))
     hmi_files.sort()
 
