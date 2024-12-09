@@ -20,7 +20,7 @@ def get_flare_start_end_time(flare_list_file, flare_index):
     flare_end_time = datetime.strptime(f'{end_time}', '%Y-%m-%d %H:%M')
     return flare_start_time, flare_end_time
 
-def download_aia(flare_start_time, flare_end_time, jsoc_email, save_dir, wave_length):
+def download_aia_fc(flare_start_time, flare_end_time, jsoc_email, save_dir, wave_length):
     '''Return the save directory that stores AIA/EUV data in 12s cadence and UV data in 24s cadence
        Format of the input flare_start_time: 'YYYY-MM-DD HH:MM'
        Download time range start from 5 minutes before and 5 minutes after the flare start time
