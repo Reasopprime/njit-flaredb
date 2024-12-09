@@ -39,7 +39,7 @@ def get_hmi_target(flare_start_time, hmi_dir):
         hmi_file = glob.glob(os.path.join(hmi_dir,f'*{hmi_start.strftime("%Y%m%d_%H%M%S")}_TAI.magnetogram.fits'))
     return hmi_file, hmi_start
 
-def get_coord(file_dir):
+def get_coord_hpc(file_dir):
     ''' get the coordinate of the center of the HPC HMI data
     '''
     sharp_map = sunpy.map.Map(file_dir)
@@ -72,7 +72,7 @@ def get_hpc_aia_12s(hmi_dir, aia_raw_dir, aia_save_dir, flare_start_time, harpnu
     if len(hmi_files)>0:
         hmi_target_file, hmi_target_time = get_hmi_target(flare_start_time, hmi_dir)
         aia_width_pixel, aia_height_pixel = get_aia_pixel_size(hmi_target_file)
-        target_xcen, target_ycen = get_coord(hmi_target_file)
+        target_xcen, target_ycen = get_coord_hpc(hmi_target_file)
         hmi_target_map = sunpy.map.Map(hmi_target_file)
         point0 = SkyCoord(target_xcen, target_ycen, frame=hmi_target_map.coordinate_frame)
       
