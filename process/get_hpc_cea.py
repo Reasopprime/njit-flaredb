@@ -1,4 +1,5 @@
-'''a script to crop the sharp data to a uniform size
+'''a script to get the HMI data in HPC and CEA coordinates
+   Crop the sharp data to a uniform size
    The segments of sharp and sharp_cea are change to Bx, By, Bz, continuum and magnetogram
    Bx and By are stored in the folder named as Bt (transverse field)
 '''
