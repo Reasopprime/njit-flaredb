@@ -47,7 +47,7 @@ def download_aia_fc(flare_start_time, flare_end_time, jsoc_email, save_dir, wave
                 query_sdo = Fido.search(a.Time(start_time, end_time),
                                         a.Sample(24*u.second),
                                         a.Wavelength(int(aiawave)*u.angstrom),
-                                        a.jsoc.Series.aia_lev1_euv_24s,
+                                        a.jsoc.Series.aia_lev1_uv_24s,
                                         a.jsoc.Notify(jsoc_email),
                                         a.jsoc.Segment.image)
                 aia_save_dir = os.path.join(save_dir, f'{save_time}', 'aia_uv', '24s', f'{str(aiawave)}')
