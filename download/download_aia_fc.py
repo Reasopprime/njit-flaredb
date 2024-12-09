@@ -39,7 +39,7 @@ def download_aia_fc(flare_start_time, flare_end_time, jsoc_email, save_dir, wave
                                         a.jsoc.Series.aia_lev1_euv_12s,
                                         a.jsoc.Notify(jsoc_email),
                                         a.jsoc.Segment.image)
-                aia_save_dir = os.path.join(save_dir, f'{save_time}', f'aia_{str(aiawave)}')
+                aia_save_dir = os.path.join(save_dir, f'{save_time}', 'aia_euv', '12s', f'{str(aiawave)}')
                 os.makedirs(aia_save_dir, exist_ok=True)
                 sdo_file = Fido.fetch(query_sdo, path = aia_save_dir)
                 print(f'{sdo_file} downloaded.')
@@ -51,7 +51,7 @@ def download_aia_fc(flare_start_time, flare_end_time, jsoc_email, save_dir, wave
                                         a.jsoc.Series.aia_lev1_euv_24s,
                                         a.jsoc.Notify(jsoc_email),
                                         a.jsoc.Segment.image)
-                aia_save_dir = os.path.join(save_dir, f'{save_time}', f'aia_{str(aiawave)}')
+                aia_save_dir = os.path.join(save_dir, f'{save_time}', 'aia_uv', '24s', f'{str(aiawave)}')
                 os.makedirs(aia_save_dir, exist_ok=True)
                 sdo_file = Fido.fetch(query_sdo, path = aia_save_dir)
                 print(f'{sdo_file} downloaded.') 
