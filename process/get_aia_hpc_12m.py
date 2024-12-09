@@ -48,7 +48,7 @@ def find_closest_aia(target_time, aia_dir, t_cri):
         t_cri is the searching range before and after the target HMI time, 
         usually t_cri is depending on the euv_cri and uv_cri in download_aia_12m.py
     '''
-    aia_files = glob.glob(os.path.join(aia_dir,f'*.image_lev1.fits'))
+    aia_files = glob.glob(os.path.join(aia_dir, '*.image_lev1.fits'))
     aia_files.sort()
     aia_times = []
     for fn in aia_files:
