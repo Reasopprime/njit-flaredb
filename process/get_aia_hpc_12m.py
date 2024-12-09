@@ -17,7 +17,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 
-def get_coord(file_dir):
+def get_coord_hpc(file_dir):
     ''' get the coordinate of the center of the HPC HMI data
     '''
     sharp_map = sunpy.map.Map(file_dir)
@@ -70,7 +70,7 @@ def get_hpc_aia_12m(hmi_dir, aia_raw_dir, aia_save_dir, harpnumber):
         aia_width_pixel, aia_height_pixel = get_aia_pixel_size(hmi_files[0])
       
         for fn_hmi in hmi_files:
-            hmi_xcen, hmi_ycen, fn_hmi_time = get_coord(fn_hmi)
+            hmi_xcen, hmi_ycen, fn_hmi_time = get_coord_hpc(fn_hmi)
             hmi_map = sunpy.map.Map(fn_hmi)
             hmi_xycen_coord = SkyCoord(hmi_xcen, hmi_ycen, frame=hmi_map.coordinate_frame)
             fn_aia = find_closest_aia(fn_hmi_time, aia_raw_dir, t_cri = 60)
